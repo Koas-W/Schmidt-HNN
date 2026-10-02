@@ -1,0 +1,152 @@
+config:
+  name: hh2p
+  system: henon_heiles_2p
+  data:
+    dt: 0.01
+    t_span: 1000.0
+    sample_every: 10
+    noise_std: 0.0
+    seed: 1234
+    n_traj:
+      train: 5
+      val: 2
+      test: 3
+    mu_split:
+      n_train_per_dim: 4
+      extrap_frac: 0.3
+      n_extrap_side: 2
+  models:
+    list:
+    - mlp_ode
+    - ahnn
+    - symoden_mu
+    - pshnn_concat
+    - sep_hnn
+    - pshnn_mlp
+    - pshnn_silu
+    - pshnn
+    target_params: 40000
+    pshnn:
+      R: 3
+      R_L: 1
+      depth: 2
+      block: swiglu
+      bias_head: true
+      mass_param: direct
+    pshnn_mlp:
+      R: 3
+      R_L: 1
+      depth: 2
+      bias_head: true
+      mass_param: direct
+    pshnn_silu:
+      R: 3
+      R_L: 1
+      depth: 2
+      bias_head: true
+      mass_param: direct
+    pshnn_concat:
+      depth: 2
+      block: swiglu
+      mass_param: direct
+    sep_hnn:
+      R: 8
+      depth: 2
+      block: swiglu
+    ahnn:
+      depth: 2
+    mlp_ode:
+      depth: 2
+  train:
+    seeds:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    lr_grid:
+    - 0.001
+    - 0.0003
+    batch_size: 8192
+    max_steps: 20000
+    eval_every: 100
+    patience: 30
+    weight_decay: 0.0001
+    cuda_graph: true
+    device: auto
+  eval:
+    rollout_t_short: 20.0
+    rollout_t_long: 100.0
+    n_rollout: 8
+  deltaV:
+    lam_min: 0.05
+    lam_max: 1.0
+    n_lam: 40
+run_info:
+  mlp_ode:
+    name: mlp_ode
+    width: 194
+    n_params: 39968
+    depth: 2
+    chosen_lr: 0.001
+    best_val: 2.2326549007608085e-06
+    n_evals: 200
+  ahnn:
+    name: ahnn
+    width: 196
+    n_params: 40181
+    depth: 2
+    chosen_lr: 0.001
+    best_val: 1.2390921856180309e-06
+    n_evals: 200
+  symoden_mu:
+    name: symoden_mu
+    width: 137
+    n_params: 39734
+    depth: 2
+    chosen_lr: 0.001
+    best_val: 1.3989741553495364e-06
+    n_evals: 184
+  pshnn_concat:
+    name: pshnn_concat
+    width: 80
+    n_params: 39604
+    depth: 2
+    chosen_lr: 0.001
+    best_val: 1.0851456163233726e-07
+    n_evals: 174
+  sep_hnn:
+    name: sep_hnn
+    width: 56
+    n_params: 39664
+    depth: 2
+    chosen_lr: 0.0003
+    best_val: 5.097908323525275e-08
+    n_evals: 200
+  pshnn_mlp:
+    name: pshnn_mlp
+    width: 69
+    n_params: 39964
+    depth: 2
+    chosen_lr: 0.001
+    best_val: 4.846872740660119e-07
+    n_evals: 129
+  pshnn:
+    name: pshnn
+    width: 56
+    n_params: 39381
+    depth: 2
+    R: 3
+    chosen_lr: 0.001
+    best_val: 1.8288933015854985e-08
+    n_evals: 159
+  pshnn_silu:
+    name: pshnn_silu
+    width: 69
+    n_params: 39964
+    depth: 2
+    chosen_lr: 0.001
+    best_val: 1.5434569132755208e-07
+    n_evals: 170
+device: cuda
+max_steps: 20000

@@ -1,0 +1,36 @@
+{
+ "args": {
+  "smoke": false,
+  "models": [
+   "mlp_ode",
+   "ahnn",
+   "symoden_mu",
+   "pshnn_concat",
+   "sep_hnn",
+   "pshnn_mlp",
+   "pshnn"
+  ],
+  "pshnn_R": 3,
+  "n_mu": 5,
+  "sample_every": 40,
+  "n_chain": 8,
+  "bias_head": true,
+  "mu_design": "grid",
+  "grid_k": 4,
+  "fixed_eval": true,
+  "seeds": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ],
+  "cuda_graph": true,
+  "max_steps": 20000,
+  "patience": 30,
+  "tag": "grid_k4"
+ },
+ "eps": 0.012041295878589153,
+ "git": "179f0ca",
+ "n_mu_actual": 256
+}

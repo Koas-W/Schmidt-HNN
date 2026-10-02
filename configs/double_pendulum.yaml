@@ -1,0 +1,25 @@
+# Double pendulum: data and evaluation configuration (M depends on (q;mu), mu=(alpha,beta); main system for parameter generalization)
+# Sampling domain q in [-1,1]^2, p in [-0.5,0.5]^2, alpha <= 0.65 (<= 0.74 after the extrap extension) avoids
+# the region where the condition number of M_tilde degrades.
+system: double_pendulum
+
+data:
+  dt: 0.002           # frozen because at dt=0.005 the maximum drift over all trajectories (including the ill-conditioned extrap tier)
+                      # is 2.9e-7, above the 1e-8 target; tightened to 0.002 by dt^4 scaling -> measured <=1e-8
+  t_span: 20.0
+  sample_every: 50    # storage sampling interval 0.1 time units
+  noise_std: 0.0
+  seed: 1234
+  n_traj:             # trajectories per mu grid point
+    train: 20
+    val: 4
+    test: 8
+  mu_split:
+    n_train_per_dim: 5   # 5x5=25 training mu (with k=4 the parameter-direction truncation error is at the level of the training floor; k=5 brings it down to 1%)
+    extrap_frac: 0.3     # extend by 30% of the range width (alpha max 0.74 < 1, physically valid)
+    n_extrap_side: 2     # 2 points per side per dimension -> 8 extrap mu in total
+
+eval:
+  rollout_t_short: 20.0
+  rollout_t_long: 100.0   # the double pendulum is chaotic; long horizon 100 (energy drift stays meaningful, pointwise error saturates)
+  n_rollout: 8

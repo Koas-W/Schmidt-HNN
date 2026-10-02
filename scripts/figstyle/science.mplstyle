@@ -1,0 +1,28 @@
+# Project overrides on top of the SciencePlots "science" style: LaTeX text (Times-like newtx, matching the txfonts of elsarticle), font sizes and colours.
+text.usetex : True
+text.latex.preamble : \usepackage{newtxtext,newtxmath}\usepackage{amsmath}
+font.family : serif
+font.size : 8
+axes.labelsize : 8
+axes.titlesize : 8
+legend.fontsize : 6
+xtick.labelsize : 7
+ytick.labelsize : 7
+axes.prop_cycle : cycler('color', ['2a78d6', 'eb6834', '1baf7a', '4a3aa7', 'e34948', '008300', '666666'])
+lines.linewidth : 0.9
+lines.markersize : 2.5
+legend.handlelength : 1.4
+legend.handleheight : 0.6
+legend.handletextpad : 0.5
+legend.labelspacing : 0.25
+legend.borderpad : 0.35
+legend.borderaxespad : 0.4
+legend.columnspacing : 0.9
+legend.frameon : True
+legend.fancybox : False
+legend.framealpha : 1.0
+legend.facecolor : white
+legend.edgecolor : black
+patch.linewidth : 0.4
+savefig.dpi : 300
+pdf.fonttype : 42

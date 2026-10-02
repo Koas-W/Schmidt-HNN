@@ -1,0 +1,22 @@
+\begin{table}[htbp]
+  \centering
+  \caption{Reference peak deflection, relative error of the dynamic peak measured from the static deflection,
+    and RMS error of the midpoint deflection over twenty periods. Best value per row in bold.}
+  \label{tab:beam-loads}
+  \footnotesize\setlength{\tabcolsep}{3pt}\sisetup{tight-spacing=true,exponent-product=\cdot}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccccccc@{}}
+    \toprule
+     & Peak & \multicolumn{2}{c}{\begin{tabular}[b]{@{}c@{}}Schmidt-HNN\end{tabular}} & \multicolumn{2}{c}{\begin{tabular}[b]{@{}c@{}}AHNN-SiLU\end{tabular}} & \multicolumn{2}{c}{\begin{tabular}[b]{@{}c@{}}SINDy (4, 3)\end{tabular}} \\
+    \cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8}
+     & $w/h$ & peak (\%) & RMS ($h$) & peak (\%) & RMS ($h$) & peak (\%) & RMS ($h$) \\
+    \midrule
+    \multicolumn{8}{@{}l}{\itshape Near-resonant pressure} \\
+    interpolated line & 2.06 & \bfseries 0.10 & \bfseries \num{7.7e-04} & 0.35 & \num{2.8e-01} & 1.19 & \num{4.9e-02} \\
+    extrapolated line & 2.69 & \bfseries 2.19 & \bfseries \num{1.4e-01} & 7.85 & \num{9.7e-01} & 10.37 & \num{5.4e-01} \\
+    \addlinespace[2pt]
+    \multicolumn{8}{@{}l}{\itshape Pressure impulse} \\
+    interpolated line & 1.59 & 0.41 & \bfseries \num{8.5e-03} & 1.24 & \num{9.4e-02} & \bfseries 0.04 & \num{1.0e-01} \\
+    extrapolated line & 1.88 & \bfseries 0.10 & \bfseries \num{1.5e-01} & 9.73 & \num{1.1e+00} & 2.30 & \num{7.9e-01} \\
+    \bottomrule
+  \end{tabular*}
+\end{table}

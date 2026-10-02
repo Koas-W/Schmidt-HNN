@@ -1,0 +1,12 @@
+# normalized singular values σ_k/σ_1; matrix = [V(μ_i, a_j)], μ_i: 200 uniform points in the box, a_j: 1500 random stored states from the training set (seed 0); V_full with b=0
+k,V_full_b0,V_eff,V_eff_minus_mu_mean
+1,1.0e+00,1.0e+00,1.0e+00
+2,8.2e-02,8.2e-02,1.6e-01
+3,4.4e-02,4.4e-02,1.6e-01
+4,2.0e-02,2.0e-02,4.1e-04
+5,2.4e-15,6.3e-05,6.2e-05
+6,2.1e-15,1.6e-05,1.1e-05
+7,1.4e-15,2.9e-06,1.0e-05
+8,1.0e-15,2.6e-06,2.0e-06
+9,9.6e-16,5.5e-07,1.3e-06
+10,9.6e-16,3.6e-07,5.4e-07

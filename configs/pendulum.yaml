@@ -1,0 +1,22 @@
+# Pendulum: data and evaluation configuration (degenerate case without mu, sanity-check system)
+system: pendulum
+
+data:
+  dt: 0.01            # RK4 step; frozen because the energy drift at t=20 is 4.9e-11 <= 1e-8 (tests/test_integrators.py)
+  t_span: 20.0
+  sample_every: 10    # storage sampling interval 0.1 time units (matches AHNN)
+  noise_std: 0.0      # no noise by default (matches AHNN)
+  seed: 1234          # data generation seed (independent of the training seeds 0-4)
+  n_traj:             # trajectory roles: fixed at generation, shared by all models/seeds
+    train: 50
+    val: 10
+    test: 20
+  mu_split:           # unused when mu_dim=0; placeholder to keep the schema uniform
+    n_train_per_dim: 4
+    extrap_frac: 0.3
+    n_extrap_side: 2
+
+eval:
+  rollout_t_short: 20.0    # time span of the pointwise L2 error curve
+  rollout_t_long: 314.0    # energy-drift time span ~ 50 characteristic periods (2pi)
+  n_rollout: 8             # number of test trajectories per tier used in rollout evaluation

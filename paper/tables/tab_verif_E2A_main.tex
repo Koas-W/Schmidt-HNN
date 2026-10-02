@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+  \centering
+  \caption{Double pendulum with $\Mm^{-1}$ represented: median over seeds of the vector-field residual, of the trajectory error after three linear periods and of the energy drift after twenty linear periods, at the trained and interpolated parameter values together (in range) and at the extrapolated ones. Best value per column in bold; seed ranges per set of parameter values in Table~\ref{tab:verif-dp-minv}.}
+  \label{tab:verif-dp-minv-main}
+  \footnotesize\setlength{\tabcolsep}{3pt}\sisetup{tight-spacing=true,exponent-product=\cdot}
+  \begin{tabular}{lcccccc}
+    \toprule
+    \multirow{2}{*}{Model} & \multicolumn{2}{c}{Residual} & \multicolumn{2}{c}{Traj.\ error (3\,$T$)} & \multicolumn{2}{c}{Energy drift (20\,$T$)} \\
+    \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+     & in range & extrap. & in range & extrap. & in range & extrap. \\
+    \midrule
+    Schmidt-HNN & \num{5.3e-07} & \num{6.3e-05} & \bfseries \num{8.7e-03} & \num{5.9e-02} & \bfseries \num{5.4e-04} & \bfseries \num{3.7e-03} \\
+    \;\;w/o separation & \bfseries \num{5.0e-07} & \bfseries \num{4.9e-05} & \num{1.1e-02} & \bfseries \num{3.9e-02} & \num{7.3e-04} & \num{4.0e-03} \\
+    \;\;w/o gating (tanh) & \num{3.7e-06} & \num{2.1e-03} & \num{2.1e-02} & \num{2.0e-01} & \num{2.0e-03} & \num{1.4e-02} \\
+    \bottomrule
+  \end{tabular}
+\end{table}

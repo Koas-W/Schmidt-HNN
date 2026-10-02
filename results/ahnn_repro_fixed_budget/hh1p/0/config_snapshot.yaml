@@ -1,0 +1,120 @@
+config:
+  name: hh1p
+  system: henon_heiles_ahnn
+  data:
+    dt: 0.01
+    t_span: 1000.0
+    sample_every: 10
+    noise_std: 0.0
+    seed: 1234
+    n_traj:
+      train: 7
+      val: 3
+      test: 4
+    mu_split:
+      n_train_per_dim: 4
+      extrap_frac: 0.3
+      n_extrap_side: 2
+  models:
+    list:
+    - ahnn
+    - pshnn
+    - mlp_ode
+    - symoden_mu
+    - pshnn_concat
+    - sep_hnn
+    - pshnn_mlp
+    target_params: 40000
+    pshnn:
+      R: 8
+      depth: 2
+      block: swiglu
+    ahnn:
+      depth: 2
+    mlp_ode:
+      depth: 2
+  train:
+    seeds:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    lr_grid:
+    - 0.001
+    - 0.0003
+    batch_size: 8192
+    max_steps: 10000
+    eval_every: 200
+    early_stop: false
+    weight_decay: 0.0001
+    cuda_graph: true
+    device: auto
+  eval:
+    rollout_t_short: 20.0
+    rollout_t_long: 100.0
+    n_rollout: 8
+  deltaV:
+    lam_min: 0.05
+    lam_max: 1.0
+    n_lam: 96
+run_info:
+  ahnn:
+    name: ahnn
+    width: 196
+    n_params: 39985
+    depth: 2
+    chosen_lr: 0.001
+    best_val: 2.5939669536915685e-06
+    n_evals: 50
+  pshnn:
+    name: pshnn
+    width: 54
+    n_params: 39430
+    depth: 2
+    R: 8
+    chosen_lr: 0.001
+    best_val: 5.006537472021102e-08
+    n_evals: 50
+  mlp_ode:
+    name: mlp_ode
+    width: 195
+    n_params: 40174
+    depth: 2
+    chosen_lr: 0.001
+    best_val: 2.575801150368018e-06
+    n_evals: 50
+  symoden_mu:
+    name: symoden_mu
+    width: 138
+    n_params: 40024
+    depth: 2
+    chosen_lr: 0.001
+    best_val: 1.2542037891474651e-06
+    n_evals: 50
+  pshnn_concat:
+    name: pshnn_concat
+    width: 80
+    n_params: 39524
+    depth: 2
+    chosen_lr: 0.001
+    best_val: 1.4532852185466617e-07
+    n_evals: 50
+  sep_hnn:
+    name: sep_hnn
+    width: 56
+    n_params: 39608
+    depth: 2
+    chosen_lr: 0.001
+    best_val: 1.3230221267611177e-07
+    n_evals: 50
+  pshnn_mlp:
+    name: pshnn_mlp
+    width: 66
+    n_params: 39994
+    depth: 2
+    chosen_lr: 0.001
+    best_val: 4.059755945290716e-07
+    n_evals: 50
+device: cuda
+max_steps: 10000

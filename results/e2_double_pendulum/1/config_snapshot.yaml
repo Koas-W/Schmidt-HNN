@@ -1,0 +1,157 @@
+experiment:
+  experiment: e2_double_pendulum
+  data_config: configs/double_pendulum.yaml
+  models:
+    list:
+    - mlp_ode
+    - ahnn
+    - symoden_mu
+    - pshnn_concat
+    - sep_hnn
+    - pshnn_mlp
+    - pshnn_silu
+    - pshnn
+    target_params: 40000
+    pshnn:
+      R: 2
+      R_L: 3
+      depth: 2
+      block: swiglu
+      bias_head: true
+      mass_param: direct
+    pshnn_mlp:
+      R: 2
+      R_L: 3
+      depth: 2
+      bias_head: true
+      mass_param: direct
+    pshnn_silu:
+      R: 2
+      R_L: 3
+      depth: 2
+      bias_head: true
+      mass_param: direct
+    pshnn_concat:
+      depth: 2
+      block: swiglu
+      mass_param: direct
+    sep_hnn:
+      R: 8
+      depth: 2
+      block: swiglu
+    ahnn:
+      depth: 2
+    mlp_ode:
+      depth: 2
+  train:
+    seeds:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    lr_grid:
+    - 0.001
+    - 0.0003
+    batch_size: 8192
+    max_steps: 20000
+    eval_every: 100
+    patience: 30
+    weight_decay: 0.0001
+    cuda_graph: true
+    device: auto
+data:
+  system: double_pendulum
+  data:
+    dt: 0.002
+    t_span: 20.0
+    sample_every: 50
+    noise_std: 0.0
+    seed: 1234
+    n_traj:
+      train: 20
+      val: 4
+      test: 8
+    mu_split:
+      n_train_per_dim: 5
+      extrap_frac: 0.3
+      n_extrap_side: 2
+  eval:
+    rollout_t_short: 20.0
+    rollout_t_long: 100.0
+    n_rollout: 8
+run_info:
+  mlp_ode:
+    name: mlp_ode
+    width: 194
+    n_params: 39968
+    depth: 2
+    chosen_lr: 0.001
+    best_val: 4.01628225003902e-05
+    n_evals: 200
+    stop_step: 20000
+  ahnn:
+    name: ahnn
+    width: 196
+    n_params: 40181
+    depth: 2
+    chosen_lr: 0.001
+    best_val: 2.435337548232197e-05
+    n_evals: 200
+    stop_step: 20000
+  symoden_mu:
+    name: symoden_mu
+    width: 137
+    n_params: 39734
+    depth: 2
+    chosen_lr: 0.001
+    best_val: 7.879554632291271e-06
+    n_evals: 200
+    stop_step: 20000
+  pshnn_concat:
+    name: pshnn_concat
+    width: 80
+    n_params: 39604
+    depth: 2
+    chosen_lr: 0.001
+    best_val: 4.279273863307279e-07
+    n_evals: 200
+    stop_step: 20000
+  sep_hnn:
+    name: sep_hnn
+    width: 56
+    n_params: 39664
+    depth: 2
+    chosen_lr: 0.001
+    best_val: 5.1779025674459354e-06
+    n_evals: 200
+    stop_step: 20000
+  pshnn_mlp:
+    name: pshnn_mlp
+    width: 68
+    n_params: 39531
+    depth: 2
+    chosen_lr: 0.001
+    best_val: 3.959704097823717e-06
+    n_evals: 176
+    stop_step: 17600
+  pshnn:
+    name: pshnn
+    width: 56
+    n_params: 39951
+    depth: 2
+    R: 2
+    chosen_lr: 0.001
+    best_val: 1.4161268267687874e-07
+    n_evals: 186
+    stop_step: 18600
+  pshnn_silu:
+    name: pshnn_silu
+    width: 68
+    n_params: 39531
+    depth: 2
+    chosen_lr: 0.001
+    best_val: 1.386771284377397e-06
+    n_evals: 192
+    stop_step: 19200
+device: cuda

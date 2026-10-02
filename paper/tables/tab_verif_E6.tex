@@ -1,0 +1,32 @@
+\begin{table}[htbp]
+  \centering
+  \caption{Verification on the Fermi--Pasta--Ulam chain: vector-field residual of Section~\ref{sec:verification:setup} on the stored test states, trajectory error $\|\hat{\x}-\x\|_{2}$ after three linear periods and relative energy drift of the reference Hamiltonian after twenty linear periods, at the trained and interpolated parameter values together (in range) and at the extrapolated ones. Each entry is the median over the five seeds and, in range, the two sets of parameter values; the second line gives the range $[\min,\max]$ in the units of the power of ten of the median. Best value per column in bold.}
+  \label{tab:verif-fpu}
+  \footnotesize\setlength{\tabcolsep}{2.5pt}\sisetup{tight-spacing=true,exponent-product=\cdot}
+  \begin{tabular}{lcccccc}
+    \toprule
+    \multirow{2}{*}{Model} & \multicolumn{2}{c}{Residual} & \multicolumn{2}{c}{Traj.\ error (3\,$T$)} & \multicolumn{2}{c}{Energy drift (20\,$T$)} \\
+    \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+     & in range & extrap. & in range & extrap. & in range & extrap. \\
+    \midrule
+    Schmidt-HNN & \bfseries \num{8.8e-08} & \bfseries \num{1.6e-07} & \bfseries \num{7.7e-03} & \bfseries \num{1.1e-02} & \bfseries \num{3.4e-04} & \bfseries \num{4.2e-04} \\
+     & {\scriptsize$[6.2,\,12.8]$} & {\scriptsize$[1.1,\,1.8]$} & {\scriptsize$[6.5,\,9.6]$} & {\scriptsize$[1.0,\,1.2]$} & {\scriptsize$[2.8,\,4.3]$} & {\scriptsize$[3.4,\,5.0]$} \\[2pt]
+    \;\;w/o separation & \num{1.8e-06} & \num{4.1e-06} & \num{3.6e-02} & \num{5.8e-02} & \num{1.6e-03} & \num{2.5e-03} \\
+     & {\scriptsize$[1.1,\,2.9]$} & {\scriptsize$[3.5,\,5.2]$} & {\scriptsize$[2.8,\,4.4]$} & {\scriptsize$[5.3,\,6.9]$} & {\scriptsize$[1.1,\,1.9]$} & {\scriptsize$[2.2,\,2.9]$} \\[2pt]
+    \;\;w/o separation, $\Mm^{-1}$ & \num{6.3e-07} & \num{1.8e-06} & -- & -- & -- & -- \\
+     & {\scriptsize$[4.6,\,10.3]$} & {\scriptsize$[1.7,\,2.2]$} &  &  &  &  \\[2pt]
+    \;\;w/o gating (tanh) & \num{8.5e-06} & \num{1.3e-05} & \num{9.0e-02} & \num{1.1e-01} & \num{3.3e-03} & \num{4.3e-03} \\
+     & {\scriptsize$[4.1,\,28.8]$} & {\scriptsize$[0.9,\,4.4]$} & {\scriptsize$[6.9,\,15.0]$} & {\scriptsize$[0.9,\,1.9]$} & {\scriptsize$[2.7,\,7.3]$} & {\scriptsize$[3.5,\,10.7]$} \\[2pt]
+    \;\;w/o gating (SiLU) & \num{2.5e-06} & \num{5.9e-06} & \num{5.6e-02} & \num{8.1e-02} & \num{1.8e-03} & \num{2.3e-03} \\
+     & {\scriptsize$[1.5,\,4.6]$} & {\scriptsize$[3.6,\,7.5]$} & {\scriptsize$[4.2,\,6.8]$} & {\scriptsize$[6.1,\,9.0]$} & {\scriptsize$[1.4,\,2.7]$} & {\scriptsize$[2.3,\,3.7]$} \\[2pt]
+    \;\;w/o Cholesky & \num{4.9e-07} & \num{8.3e-07} & \num{2.1e-02} & \num{2.5e-02} & \num{7.5e-04} & \num{9.6e-04} \\
+     & {\scriptsize$[2.8,\,6.7]$} & {\scriptsize$[5.0,\,9.8]$} & {\scriptsize$[1.7,\,2.8]$} & {\scriptsize$[2.2,\,3.2]$} & {\scriptsize$[5.8,\,11.1]$} & {\scriptsize$[8.3,\,11.6]$} \\[2pt]
+    AHNN & \num{1.4e-05} & \num{2.4e-05} & \num{1.2e-01} & \num{1.6e-01} & \num{4.7e-03} & \num{5.6e-03} \\
+     & {\scriptsize$[0.9,\,1.9]$} & {\scriptsize$[2.3,\,2.5]$} & {\scriptsize$[1.1,\,1.4]$} & {\scriptsize$[1.6,\,1.6]$} & {\scriptsize$[3.6,\,5.9]$} & {\scriptsize$[4.1,\,7.2]$} \\[2pt]
+    SymODEN & \num{9.5e-06} & \num{1.8e-05} & \num{1.0e-01} & \num{1.4e-01} & \num{3.6e-03} & \num{5.0e-03} \\
+     & {\scriptsize$[5.6,\,13.6]$} & {\scriptsize$[1.7,\,1.9]$} & {\scriptsize$[0.8,\,1.1]$} & {\scriptsize$[1.4,\,1.5]$} & {\scriptsize$[2.8,\,3.9]$} & {\scriptsize$[4.6,\,5.4]$} \\[2pt]
+    MLP & \num{6.3e-06} & \num{1.5e-05} & \num{8.8e-02} & \num{1.2e-01} & \num{8.5e-02} & \num{7.9e-02} \\
+     & {\scriptsize$[3.6,\,10.3]$} & {\scriptsize$[1.1,\,1.5]$} & {\scriptsize$[7.7,\,10.1]$} & {\scriptsize$[1.1,\,1.3]$} & {\scriptsize$[7.2,\,11.8]$} & {\scriptsize$[7.1,\,12.0]$} \\[2pt]
+    \bottomrule
+  \end{tabular}
+\end{table}

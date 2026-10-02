@@ -1,0 +1,30 @@
+# Beam experiment: potential-only learning; T=|p|^2/2 is supplied to every model.
+# Direct comparison against published schemes (AHNN / SymODEN / direct vector-field regression); no ablation here (ablations are covered by the other experiments).
+# Single 8x4x4=128 full grid + fixed evaluation set (see configs/clamped_beam.yaml); 5 seeds; parameter counts aligned to 4e4 +-5%.
+experiment: beam_main
+data_config: configs/clamped_beam.yaml
+
+models:
+  list: [mlp_ode, ahnn, symoden_mu, pshnn, silu_hnn]   # silu_hnn: modern generic MLP potential baseline
+  target_params: 40000
+  known_kinetic: true          # known kinetic energy: pshnn learn_kinetic=False; ahnn/mlp_ode go through the wrapper;
+                               # the symoden_mu kinetic structure is redundant when M = I is known; kept as a participant and declared as such
+  pshnn:   {R: 5, depth: 2, block: swiglu, bias_head: true}   # R=5: measured spectral rank 3 of V_eff + bias head for the mu-independent term + 2 channels for the condensation tail
+                                                              # (results/beam_checks/veff_spectrum.csv); the total parameter count is fixed, so a larger R makes each channel thinner
+  ahnn:    {depth: 2}
+  silu_hnn: {depth: 2}           # H_hat = |p|^2/2 + MLP_SiLU([q;mu]); differs from pshnn only in concatenation vs separation and addition vs multiplication
+  mlp_ode: {depth: 2}
+
+train:
+  seeds: [0, 1, 2, 3, 4]
+  lr_grid: [3.0e-3]           # single starting lr 3e-3, frozen after tuning
+  lr_schedule: cosine         # cosine decay to lr_min (same for all models; a constant lr is unstable across the beta^4 curvature span)
+  lr_min: 1.0e-5
+  batch_size: 8192
+  max_steps: 30000            # full budget; the best validation checkpoint is kept (early_stop=false)
+  eval_every: 100
+  patience: 30                # inactive when early_stop=false; field kept
+  early_stop: false
+  weight_decay: 1.0e-4
+  cuda_graph: true
+  device: auto

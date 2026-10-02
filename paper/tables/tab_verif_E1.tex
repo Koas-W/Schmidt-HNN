@@ -1,0 +1,30 @@
+\begin{table}[htbp]
+  \centering
+  \caption{Verification on the pendulum: vector-field residual of Section~\ref{sec:verification:setup} on the stored test states, trajectory error $\|\hat{\x}-\x\|_{2}$ after three linear periods and relative energy drift of the reference Hamiltonian after twenty linear periods. Each entry is the median over the five seeds; the second line gives the range $[\min,\max]$ in the units of the power of ten of the median. Best value per column in bold.}
+  \label{tab:verif-pendulum}
+  \footnotesize\setlength{\tabcolsep}{2.5pt}\sisetup{tight-spacing=true,exponent-product=\cdot}
+  \begin{tabular}{lccc}
+    \toprule
+    \multirow{2}{*}{Model} & \multicolumn{1}{c}{Residual} & \multicolumn{1}{c}{Traj.\ error (3\,$T$)} & \multicolumn{1}{c}{Energy drift (20\,$T$)} \\
+    \cmidrule(lr){2-2} \cmidrule(lr){3-3} \cmidrule(lr){4-4}
+     & in range & in range & in range \\
+    \midrule
+    Schmidt-HNN & \bfseries \num{1.5e-09} & \bfseries \num{3.9e-04} & \bfseries \num{3.0e-05} \\
+     & {\scriptsize$[0.5,\,6.5]$} & {\scriptsize$[2.5,\,8.4]$} & {\scriptsize$[2.1,\,6.7]$} \\[2pt]
+    \;\;w/o separation & \num{6.1e-09} & \num{8.3e-04} & \num{6.2e-05} \\
+     & {\scriptsize$[0.5,\,9.3]$} & {\scriptsize$[2.6,\,14.1]$} & {\scriptsize$[3.2,\,9.7]$} \\[2pt]
+    \;\;w/o gating (tanh) & \num{1.2e-08} & \num{7.3e-04} & \num{4.8e-05} \\
+     & {\scriptsize$[0.8,\,5.1]$} & {\scriptsize$[3.8,\,20.0]$} & {\scriptsize$[4.0,\,32.2]$} \\[2pt]
+    \;\;w/o gating (SiLU) & \num{1.7e-08} & \num{1.6e-03} & \num{1.2e-04} \\
+     & {\scriptsize$[1.0,\,19.4]$} & {\scriptsize$[0.7,\,6.0]$} & {\scriptsize$[0.5,\,4.3]$} \\[2pt]
+    \;\;w/o Cholesky & \num{8.5e-09} & \num{9.2e-04} & \num{1.4e-04} \\
+     & {\scriptsize$[7.4,\,22.8]$} & {\scriptsize$[2.7,\,14.3]$} & {\scriptsize$[1.2,\,2.8]$} \\[2pt]
+    AHNN & \num{4.9e-08} & \num{2.1e-03} & \num{2.5e-04} \\
+     & {\scriptsize$[3.0,\,5.8]$} & {\scriptsize$[1.2,\,2.9]$} & {\scriptsize$[2.0,\,3.8]$} \\[2pt]
+    SymODEN & \num{1.4e-08} & \num{1.4e-03} & \num{9.1e-05} \\
+     & {\scriptsize$[1.0,\,2.3]$} & {\scriptsize$[0.8,\,1.5]$} & {\scriptsize$[7.5,\,15.9]$} \\[2pt]
+    MLP & \num{1.7e-07} & \num{8.7e-03} & \num{3.1e-02} \\
+     & {\scriptsize$[1.2,\,3.6]$} & {\scriptsize$[4.5,\,11.8]$} & {\scriptsize$[2.3,\,4.1]$} \\[2pt]
+    \bottomrule
+  \end{tabular}
+\end{table}

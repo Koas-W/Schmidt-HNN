@@ -1,0 +1,27 @@
+# Unified training protocol: 20000 steps, patience 30, lr grid {1e-3, 3e-4, 1e-4}, CUDA Graph; the Schmidt-HNN family represents M, ranks taken from the spectrum (spectral rank of V + mu-independent bias head).
+# Pendulum x {MLP-ODE, AHNN (degenerate HNN), Schmidt-HNN} x 5 seeds
+# The pendulum has no mu: AHNN degenerates to the original HNN, the Schmidt-HNN Param-Net degenerates to a learnable constant vector.
+experiment: e1_pendulum
+data_config: configs/pendulum.yaml
+
+models:
+  list: [mlp_ode, ahnn, symoden_mu, pshnn_concat, sep_hnn, pshnn_mlp, pshnn_silu, pshnn]
+  target_params: 40000
+  pshnn:        {R: 1, R_L: 1, depth: 2, block: swiglu, bias_head: true, mass_param: direct}   # pendulum: V rank 1, L = 1
+  pshnn_mlp:    {R: 1, R_L: 1, depth: 2, bias_head: true, mass_param: direct}
+  pshnn_silu:   {R: 1, R_L: 1, depth: 2, bias_head: true, mass_param: direct}   # ungated SiLU block (same settings as pshnn_mlp)
+  pshnn_concat: {depth: 2, block: swiglu, mass_param: direct}
+  sep_hnn:      {R: 8, depth: 2, block: swiglu}
+  ahnn: {depth: 2}
+  mlp_ode: {depth: 2}
+
+train:
+  seeds: [0, 1, 2, 3, 4]
+  lr_grid: [1.0e-3, 3.0e-4, 1.0e-4]   # learning-rate grid used in the paper; 1e-4 was never selected by validation
+  batch_size: 8192
+  max_steps: 20000
+  eval_every: 100
+  patience: 30
+  weight_decay: 1.0e-4
+  cuda_graph: true
+  device: auto

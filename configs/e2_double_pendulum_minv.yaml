@@ -1,0 +1,26 @@
+# Appendix comparison: identical data (5x5 anchors), budget and rank configuration as the main experiment;
+# only the Schmidt-HNN family switches to the SymODEN-style representation M^-1 = L L^T (mass_param: inverse, T = |L^T p|^2/2).
+# Main experiment: e2_double_pendulum.yaml; the other models (mlp_ode, ahnn, symoden_mu) are identical to the main experiment and are not rerun.
+experiment: e2_double_pendulum_minv
+data_config: configs/double_pendulum.yaml
+
+models:
+  list: [pshnn_concat, pshnn_mlp, pshnn]   # only the Schmidt-HNN family changes with the represented object; the other models are identical to the main experiment
+  target_params: 40000
+  pshnn:        {R: 2, R_L: 3, depth: 2, block: swiglu, bias_head: true, mass_param: inverse}
+  pshnn_mlp:    {R: 2, R_L: 3, depth: 2, bias_head: true, mass_param: inverse}
+  pshnn_concat: {depth: 2, block: swiglu, mass_param: inverse}
+  sep_hnn:      {R: 8, depth: 2, block: swiglu}
+  ahnn: {depth: 2}
+  mlp_ode: {depth: 2}
+
+train:
+  seeds: [0, 1, 2, 3, 4]
+  lr_grid: [1.0e-3, 3.0e-4, 1.0e-4]   # learning-rate grid used in the paper; 1e-4 was never selected in any of the 50 validation sweeps
+  batch_size: 8192
+  max_steps: 20000
+  eval_every: 100
+  patience: 30
+  weight_decay: 1.0e-4
+  cuda_graph: true
+  device: auto

@@ -1,0 +1,20 @@
+\begin{table}[htbp]
+  \centering
+  \caption{Ratio of the midpoint error of each model to that of the
+    proposed architecture, median [min, max] over the interpolated and the extrapolated parameter values, and
+    fraction of the units of the last hidden layer with $|z|>2$ on the test states.}
+  \label{tab:beam-ratio}
+  \footnotesize\setlength{\tabcolsep}{5pt}
+  \begin{tabular}{lccc}
+    \toprule
+    Model & interpolated & extrapolated & $|z|>2$ (\%) \\
+    \midrule
+    Schmidt-HNN & 1 & 1 & -- \\
+    AHNN-SiLU & 12.5 [5.8, 35.0] & 8.8 [3.1, 61.7] & 100 \\
+    AHNN & 150.1 [61.9, 513.3] & 37.9 [3.1, 266.8] & 83 \\
+    SymODEN & 160.6 [84.7, 486.3] & 39.4 [3.0, 244.1] & 72 \\
+    MLP & 61.5 [7.5, 190.0] & 7.8 [1.5, 83.3] & 77 \\
+    SINDy (4, 3) & 10.8 [1.9, 36.2] & 5.2 [0.4, 38.4] & -- \\
+    \bottomrule
+  \end{tabular}
+\end{table}

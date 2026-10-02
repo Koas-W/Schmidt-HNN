@@ -1,0 +1,22 @@
+\begin{table}[htbp]
+  \centering
+  \caption{VPT in periods, RMS midpoint error in units of $h$ and relative error of the static deflection,
+    median over the parameter values and the seeds; the static deflection is evaluated at the interpolated
+    and the extrapolated values, not at the trained ones. Best value per column in bold.}
+  \label{tab:beam-free}
+  \footnotesize\setlength{\tabcolsep}{3pt}\sisetup{tight-spacing=true,exponent-product=\cdot}
+  \begin{tabular}{lcccccc}
+    \toprule
+    \multirow{2}{*}{Model} & \multicolumn{2}{c}{VPT} & \multicolumn{2}{c}{RMS error} & \multicolumn{2}{c}{Static deflection} \\
+    \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+     & in range & extrap. & in range & extrap. & in range & extrap. \\
+    \midrule
+    Schmidt-HNN & \bfseries 23.1 & \bfseries 17.0 & \bfseries \num{1.0e-02} & \bfseries \num{5.3e-02} & \bfseries \num{1.9e-03} & \num{3.6e-03} \\
+    AHNN-SiLU & 12.9 & 1.8 & \num{1.3e-01} & \num{5.9e-01} & \num{1.9e-02} & \num{8.8e-02} \\
+    AHNN & 0.2 & 0.2 & \num{1.5e+00} & \num{1.6e+00} & \num{3.7e-01} & \num{2.5e-01} \\
+    SymODEN & 0.1 & 0.1 & \num{1.5e+00} & \num{1.5e+00} & \num{2.7e-01} & \num{2.4e-01} \\
+    MLP & 2.9 & 2.2 & \num{6.4e-01} & \num{5.5e-01} & \num{6.6e-02} & \num{4.7e-02} \\
+    SINDy (4, 3) & 14.1 & 6.2 & \num{1.1e-01} & \num{3.4e-01} & \num{2.0e-03} & \bfseries \num{2.7e-03} \\
+    \bottomrule
+  \end{tabular}
+\end{table}

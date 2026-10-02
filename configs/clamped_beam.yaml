@@ -1,0 +1,30 @@
+# Clamped-clamped square beam: data and evaluation configuration
+# System default: 5 master + 5 slave modes (N=2n=10), the smallest n passing the modal convergence test (results/beam_checks/convergence_t5.csv).
+# Three parameters mu=(log10 k_tilde, N0_tilde/4pi^2, w_s^lin/h); mass matrix identically I; potential zero at the mu-dependent static equilibrium.
+system: clamped_beam
+
+data:
+  dt: 5.0e-5          # frozen step (results/beam_checks/dt_sweep_t6.csv): drift 7.9e-10 <= 1e-8; 1e-4 gives 2.5e-8 and fails
+  t_span: 5.0         # >= 18 first-mode linear periods (2pi/beta1^2=0.281); the stiff 5th mode forces a very small dt for the drift target, so t_span bounds the cost
+  sample_every: 500   # storage interval 0.025 -> 201 points/trajectory
+  noise_std: 0.0      # no noise by default
+  seed: 1234
+  n_traj:             # per anchor 20 train + 4 val; 4 trajectories per evaluation point
+    train: 20
+    val: 4
+    test: 4
+  mu_split:
+    mode: fixed_eval        # train on the full grid + fixed evaluation set (interp LHS + stratified extrapolation ranges)
+    n_train_per_dim: [8, 4, 4]   # 8x4x4 = 128 training anchors: mu1 enters the potential through the logistic function
+                                 # g=1/(1+10^-mu1); 4 levels on [-1,1] fix only a cubic (best residual 9e-3), 8 levels fix a degree-7 polynomial (1.4e-4);
+                                 # mu2, mu3 enter linearly, 4 levels suffice. Diagnostic: with 64 anchors the interp error correlates only with the mu1 grid spacing (rho ~ 0.6-0.85)
+    n_interp: 24
+    n_per_shell: 8
+    n_shells: 3             # extrapolation depth 0-10% / 10-20% / 20-30% of the range width
+    extrap_frac: 0.3
+    eval_seed: 9999
+
+eval:
+  rollout_t_short: 2.5     # time span of the pointwise L2 curve (~9 first-mode linear periods)
+  rollout_t_long: 5.0      # energy-drift time span = data time span
+  n_rollout: 4

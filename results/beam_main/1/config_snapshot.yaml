@@ -1,0 +1,80 @@
+experiment:
+  experiment: beam_main
+  data_config: configs/clamped_beam.yaml
+  models:
+    list:
+    - mlp_ode
+    - ahnn
+    - symoden_mu
+    - pshnn
+    - silu_hnn
+    target_params: 40000
+    known_kinetic: true
+    pshnn:
+      R: 5
+      depth: 2
+      block: swiglu
+      bias_head: true
+    ahnn:
+      depth: 2
+    silu_hnn:
+      depth: 2
+    mlp_ode:
+      depth: 2
+  train:
+    seeds:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    lr_grid:
+    - 0.003
+    lr_schedule: cosine
+    lr_min: 1.0e-05
+    batch_size: 8192
+    max_steps: 30000
+    eval_every: 100
+    patience: 30
+    early_stop: false
+    weight_decay: 0.0001
+    cuda_graph: true
+    device: auto
+data:
+  system: clamped_beam
+  data:
+    dt: 5.0e-05
+    t_span: 5.0
+    sample_every: 500
+    noise_std: 0.0
+    seed: 1234
+    n_traj:
+      train: 20
+      val: 4
+      test: 4
+    mu_split:
+      mode: fixed_eval
+      n_train_per_dim:
+      - 8
+      - 4
+      - 4
+      n_interp: 24
+      n_per_shell: 8
+      n_shells: 3
+      extrap_frac: 0.3
+      eval_seed: 9999
+  eval:
+    rollout_t_short: 2.5
+    rollout_t_long: 5.0
+    n_rollout: 4
+run_info:
+  silu_hnn:
+    name: silu_hnn
+    width: 195
+    n_params: 40171
+    depth: 2
+    chosen_lr: 0.003
+    best_val: 286.5168221393035
+    n_evals: 300
+    stop_step: 30000
+device: cuda

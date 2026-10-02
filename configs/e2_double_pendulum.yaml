@@ -1,0 +1,29 @@
+# Double pendulum x all models x 5 seeds x three mu tiers:
+# - 5x5 anchors (configs/double_pendulum.yaml);
+# - convergence budget (20000 steps, patience 30, CUDA Graph);
+# - the Schmidt-HNN family represents the mass matrix M = L L^T (mass_param: direct, triangular solve in the kinetic term); ranks taken from the spectrum (count of sigma_k/sigma_1 > 1e-4): R_V=2 + bias head, R_L=3;
+# - literature baselines in their original form (SymODEN-mu represents M^-1). The same comparison under the M^-1 representation is in e2_double_pendulum_minv.yaml (appendix).
+experiment: e2_double_pendulum
+data_config: configs/double_pendulum.yaml
+
+models:
+  list: [mlp_ode, ahnn, symoden_mu, pshnn_concat, sep_hnn, pshnn_mlp, pshnn_silu, pshnn]
+  target_params: 40000
+  pshnn:        {R: 2, R_L: 3, depth: 2, block: swiglu, bias_head: true, mass_param: direct}
+  pshnn_mlp:    {R: 2, R_L: 3, depth: 2, bias_head: true, mass_param: direct}
+  pshnn_silu:   {R: 2, R_L: 3, depth: 2, bias_head: true, mass_param: direct}   # ungated SiLU block (same settings as pshnn_mlp)
+  pshnn_concat: {depth: 2, block: swiglu, mass_param: direct}
+  sep_hnn:      {R: 8, depth: 2, block: swiglu}
+  ahnn: {depth: 2}
+  mlp_ode: {depth: 2}
+
+train:
+  seeds: [0, 1, 2, 3, 4]
+  lr_grid: [1.0e-3, 3.0e-4, 1.0e-4]   # learning-rate grid used in the paper; 1e-4 was never selected in any of the 50 validation sweeps
+  batch_size: 8192
+  max_steps: 20000
+  eval_every: 100
+  patience: 30
+  weight_decay: 1.0e-4
+  cuda_graph: true
+  device: auto

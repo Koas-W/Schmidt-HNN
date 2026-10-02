@@ -1,0 +1,15 @@
+{
+  "source": "Han, Glaz, Haile, Lai, Phys. Rev. Research 3, 023156 (2021), arXiv:2102.13235, Fig.3(a) + §III.B text",
+  "metric": "relative potential error <ΔV> vs bifurcation parameter λ, Hénon–Heiles, E=1/6",
+  "digitization_method": "STATED BOUNDS (not point-digitized): the paper's figures are embedded as tiled FlateDecode RGB rasters with an opaque tile layout and no PDF rendering tooling available in this env; the paper does not tabulate Fig.3a. We therefore overlay the paper's explicit quoted bounds rather than fabricate pixel-read points.",
+  "training_lambdas": [0.2, 0.4, 0.6, 0.8],
+  "shaded_region": [0.2, 0.8],
+  "shaded_bound_rel_err": 0.02,
+  "full_interval": [0.0, 1.0],
+  "full_interval_bound_rel_err": 0.08,
+  "quotes": [
+    "In the shaded region that contains these four values of λ, the relative error is less than 2%.",
+    "The adaptability extends even outside the shaded region but with larger error (still within 8% though)."
+  ],
+  "note": "AHNN reported these for an ENSEMBLE of 20 networks. Our reimplementation trains single nets (5 seeds). Agreement to be read as order-of-magnitude/band, not point-wise."
+}

@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+  \centering
+  \caption{SINDy on dictionaries of degree $d_{q}$ in $\q$ and $d_{\mu}$ in $\mub$: number of
+    terms, terms retained after thresholding, and MSE of the restoring force on the test states at the trained,
+    interpolated and extrapolated values. The dictionary with the smallest extrapolated MSE is used.}
+  \label{tab:beam-sindy}
+  \footnotesize\setlength{\tabcolsep}{4pt}\sisetup{tight-spacing=true,exponent-product=\cdot}
+  \begin{tabular}{ccccccc}
+    \toprule
+    $d_{q}$ & $d_{\mu}$ & terms & retained & trained & interpolated & extrapolated \\
+    \midrule
+    4 & 3 & 2500 & 1015 & \num{24.97} & \num{29.45} & \num{4923} \\
+    4 & 4 & 4375 & 2378 & \num{24.31} & \num{541.5} & \num{36100} \\
+    6 & 3 & 9220 & 9220 & \num{28.36} & \num{25.07} & \num{4943} \\
+    6 & 4 & 16135 & 10992 & \num{66.92} & \num{539.4} & \num{36000} \\
+    \bottomrule
+  \end{tabular}
+\end{table}

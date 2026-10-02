@@ -1,0 +1,4 @@
+variant,dq,dmu,n_cols,lambda,n_nonzero,val_mse,tier,vf_mse,t_accumulate_s,t_total_s
+potential,4,4,4375,0.0001,2378,25.1715,train,24.314,506,627
+potential,4,4,4375,0.0001,2378,25.1715,interp,541.462,506,627
+potential,4,4,4375,0.0001,2378,25.1715,extrap,36101.7,506,627

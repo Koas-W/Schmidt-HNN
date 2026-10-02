@@ -1,0 +1,22 @@
+\begin{table}[htbp]
+  \centering
+  \caption{One-parameter H\'enon--Heiles system: median over seeds of the vector-field residual, of the trajectory error after three linear periods and of the energy drift after twenty linear periods, at the trained and interpolated parameter values together (in range) and at the extrapolated ones. Best value per column in bold; seed ranges per set of parameter values in Table~\ref{tab:verif-hh1}.}
+  \label{tab:verif-hh1-main}
+  \footnotesize\setlength{\tabcolsep}{3pt}\sisetup{tight-spacing=true,exponent-product=\cdot}
+  \begin{tabular}{lcccccc}
+    \toprule
+    \multirow{2}{*}{Model} & \multicolumn{2}{c}{Residual} & \multicolumn{2}{c}{Traj.\ error (3\,$T$)} & \multicolumn{2}{c}{Energy drift (20\,$T$)} \\
+    \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+     & in range & extrap. & in range & extrap. & in range & extrap. \\
+    \midrule
+    Schmidt-HNN & \bfseries \num{1.3e-08} & \bfseries \num{8.9e-08} & \bfseries \num{1.4e-03} & \bfseries \num{6.7e-03} & \bfseries \num{2.6e-04} & \bfseries \num{4.4e-04} \\
+    \;\;w/o separation & \num{6.7e-08} & \num{1.5e-06} & \num{3.8e-03} & \num{2.4e-02} & \num{5.7e-04} & \num{2.5e-03} \\
+    \;\;w/o gating (tanh) & \num{2.9e-07} & \num{3.0e-06} & \num{5.7e-03} & \num{2.4e-02} & \num{1.0e-03} & \num{4.2e-03} \\
+    \;\;w/o gating (SiLU) & \num{1.0e-07} & \num{7.3e-07} & \num{4.3e-03} & \num{1.2e-02} & \num{4.2e-04} & \num{1.6e-03} \\
+    \;\;w/o Cholesky & \num{7.0e-08} & \num{3.8e-07} & \num{3.3e-03} & \num{1.3e-02} & \num{5.0e-04} & \num{1.5e-03} \\
+    AHNN & \num{1.1e-06} & \num{2.9e-05} & \num{1.4e-02} & \num{9.3e-02} & \num{1.5e-03} & \num{1.3e-02} \\
+    SymODEN & \num{1.3e-06} & \num{2.1e-05} & \num{1.4e-02} & \num{6.6e-02} & \num{2.1e-03} & \num{8.4e-03} \\
+    MLP & \num{1.8e-06} & \num{2.7e-05} & \num{2.1e-02} & \num{6.6e-02} & \num{7.9e-02} & \num{2.6e-01} \\
+    \bottomrule
+  \end{tabular}
+\end{table}

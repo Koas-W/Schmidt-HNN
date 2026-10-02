@@ -1,0 +1,16 @@
+\begin{table}[htbp]
+  \centering
+  \caption{Fermi--Pasta--Ulam chain: vector-field residual of the proposed architecture against the rank $R_{V}$, with the bias head and $R_{L}=1$, in range (trained and interpolated parameter values) and extrapolated. Median over five seeds; the second line gives the range $[\min,\max]$ in the units of the power of ten of the median. $R_{V}=3$ is the value read from the spectrum.}
+  \label{tab:rank-sweep}
+  \footnotesize\setlength{\tabcolsep}{5pt}\sisetup{tight-spacing=true,exponent-product=\cdot}
+  \begin{tabular}{lcccccc}
+    \toprule
+    $R_{V}$ & 1 & 2 & 3 & 4 & 6 & 8 \\
+    \midrule
+    in range & \num{9.3e-06} & \num{9.5e-08} & \num{8.8e-08} & \num{8.9e-08} & \num{8.9e-08} & \num{1.0e-07} \\
+     & {\scriptsize$[6.0,\,13.4]$} & {\scriptsize$[5.5,\,14.2]$} & {\scriptsize$[6.2,\,12.8]$} & {\scriptsize$[5.7,\,15.1]$} & {\scriptsize$[3.8,\,16.2]$} & {\scriptsize$[0.7,\,1.7]$} \\[2pt]
+    extrapolated & \num{2.3e-05} & \num{1.5e-07} & \num{1.6e-07} & \num{1.5e-07} & \num{1.7e-07} & \num{1.9e-07} \\
+     & {\scriptsize$[2.2,\,2.4]$} & {\scriptsize$[1.2,\,2.2]$} & {\scriptsize$[1.1,\,1.8]$} & {\scriptsize$[1.2,\,2.2]$} & {\scriptsize$[0.9,\,2.5]$} & {\scriptsize$[1.4,\,2.4]$} \\[2pt]
+    \bottomrule
+  \end{tabular}
+\end{table}

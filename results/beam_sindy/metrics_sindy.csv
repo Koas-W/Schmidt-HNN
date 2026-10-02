@@ -1,0 +1,16 @@
+model,tier,metric,value
+sindy_potential_dq4_dmu3,train,vf_mse,24.96649953358209
+sindy_potential_dq4_dmu3,interp,vf_mse,29.450577839966833
+sindy_potential_dq4_dmu3,extrap,vf_mse,4922.840132669983
+sindy_potential_dq4_dmu3,train,rollout_l2_final,9.646986015354553
+sindy_potential_dq4_dmu3,train,rollout_l2_mean,4.72090786504619
+sindy_potential_dq4_dmu3,interp,rollout_l2_final,11.14848756758843
+sindy_potential_dq4_dmu3,interp,rollout_l2_mean,5.2075354398223
+sindy_potential_dq4_dmu3,extrap,rollout_l2_final,36.625157036226646
+sindy_potential_dq4_dmu3,extrap,rollout_l2_mean,26.115473650935147
+sindy_potential_dq4_dmu3,train,energy_drift_final,0.0026166191003434533
+sindy_potential_dq4_dmu3,train,energy_drift_max,0.0031108640017734144
+sindy_potential_dq4_dmu3,interp,energy_drift_final,0.002623556222531253
+sindy_potential_dq4_dmu3,interp,energy_drift_max,0.0031897060799951963
+sindy_potential_dq4_dmu3,extrap,energy_drift_final,0.04165294279052922
+sindy_potential_dq4_dmu3,extrap,energy_drift_max,0.04908786949261049
