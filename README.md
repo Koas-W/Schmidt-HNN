@@ -2,8 +2,7 @@
 
 Code, configurations and result tables for the paper
 *Schmidt Hamiltonian neural networks: identification of parametric mechanical
-energies from recorded motions* (submitted to Computer Methods in Applied
-Mechanics and Engineering).
+energies from recorded motions*.
 
 The network identifies the Hamiltonian H(q, p; mu) of a parametric natural
 mechanical system from recorded motions. A parameter network and a coordinate
