@@ -1,8 +1,8 @@
 # Schmidt Hamiltonian neural networks
 
 Code, configurations and result tables for the paper
-*Schmidt Hamiltonian neural networks: identification of parametric mechanical
-energies from recorded motions*.
+*Schmidt Hamiltonian neural networks for learning parametric mechanical
+systems*.
 
 The network identifies the Hamiltonian H(q, p; mu) of a parametric natural
 mechanical system from recorded motions. A parameter network and a coordinate
